@@ -1,0 +1,8 @@
+# Font for window titles.
+font pango:JetBrains Mono Nerd Font 12
+
+# border
+default_border pixel 2
+hide_edge_borders smart
+
+include ~/.config/i3/colors

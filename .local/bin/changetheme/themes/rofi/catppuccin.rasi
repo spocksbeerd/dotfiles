@@ -1,0 +1,14 @@
+/* catppuccin */
+
+* {
+  bg: #1e1e2e;
+  bg-alt: #313244;
+
+  fg: #cdd6f4;
+  fg-alt: #6c7086;
+
+  primary: #94E2D5;
+
+  background-color: @bg;
+}
+

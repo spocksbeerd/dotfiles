@@ -1,0 +1,28 @@
+set hidden true
+set ignorecase true
+set previewer ~/.config/lf/previewer
+set preview true
+set errorfmt "\033[7;31;40m"
+
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *.rar) unrar "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+#bindings
+map au unarchive
+
+map y copy
+map p paste
+map x cut
+map d
+map dd delete
+
+#run shell script/binary
+map R $"$f"

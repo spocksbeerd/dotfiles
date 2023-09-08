@@ -1,0 +1,14 @@
+# Launch polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh &
+
+# Launch picom
+exec --no-startup-id picom -b &
+
+# Set Night Light
+exec_always --no-startup-id sct 3400 &
+
+# Set wallpaper
+exec_always --no-startup-id nitrogen --restore &
+
+# Launch dunst
+exec_always --no-startup-id ~/.config/dunst/launch.sh &

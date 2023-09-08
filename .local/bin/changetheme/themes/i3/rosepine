@@ -1,0 +1,5 @@
+#rosepine
+
+# colors                ext brd bg      text    indctr  int brd
+client.focused          #ebbcba #191724 #E0DEF4 #2E9EF4 #ebbcba
+client.focused_inactive #5f676a #5f676a #ffffff #484e50 #5f676a

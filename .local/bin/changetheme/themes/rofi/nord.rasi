@@ -1,0 +1,14 @@
+/* nord */
+
+* {
+  bg: #2e3440;
+  bg-alt: #4c566a;
+
+  fg: #d8dee9;
+  fg-alt: #576173; 
+
+  primary: #81A1C1;
+
+  background-color: @bg;
+}
+

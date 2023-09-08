@@ -1,0 +1,14 @@
+/* gruvbox */
+
+* {
+  bg: #282828;
+  bg-alt: #3c3836;
+
+  fg: #ebdbb2;
+  fg-alt: #665c54; 
+
+  primary: #98971a;
+
+  background-color: @bg;
+}
+

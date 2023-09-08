@@ -1,0 +1,7 @@
+[settings]
+pseudo-transparency = true
+
+[bar/muhbar]
+border-size = 4pt
+border-color = #00000000
+radius = 8pt

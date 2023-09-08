@@ -1,0 +1,13 @@
+# Enable VCS
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:*' formats '%B%F{green}on %B%F{red}%b '
+zstyle ':vcs_info:*' enable git
+
+# Prompt
+setopt PROMPT_SUBST
+PROMPT='%n '                  # username
+PROMPT+='%B%F{green}in '      # literal 'in'
+PROMPT+='%B%F{blue}%1~ '      # current working dir level 1
+PROMPT+='${vcs_info_msg_0_}'  # vcs variable formatted above
+PROMPT+='%B%F{blue}$ %f%b'    # end of prompt

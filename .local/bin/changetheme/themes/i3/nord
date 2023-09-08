@@ -1,0 +1,5 @@
+#nord
+
+# colors                ext brd bg      text    indctr  int brd
+client.focused          #81A1C1 #2E3440 #D8DEE9 #2E9EF4 #81A1C1 
+client.focused_inactive #5f676a #5f676a #ffffff #484e50 #5f676a

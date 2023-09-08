@@ -1,0 +1,6 @@
+#!/bin/bash
+
+case "$1" in
+	*.zip|*.jar) unzip -l "$1" ;;
+    *) head -n 40 "$1" ;;
+esac

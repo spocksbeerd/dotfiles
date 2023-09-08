@@ -1,0 +1,5 @@
+#dracula
+
+# colors                ext brd bg      text    indctr  int brd
+client.focused          #bd93f9 #282A36 #F8F8F2 #2E9EF4 #bd93f9 
+client.focused_inactive #5f676a #5f676a #ffffff #484e50 #5f676a

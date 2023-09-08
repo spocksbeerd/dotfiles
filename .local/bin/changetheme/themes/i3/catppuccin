@@ -1,0 +1,5 @@
+#catppuccin
+
+# colors                ext brd bg      text    indctr  int brd
+client.focused          #94E2D5 #1E1E2E #BBC2CF #2E9EF4 #94E2D5
+client.focused_inactive #5f676a #5f676a #ffffff #484e50 #5f676a
