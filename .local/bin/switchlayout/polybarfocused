@@ -1,7 +1,0 @@
-[settings]
-pseudo-transparency = false 
-
-[bar/muhbar]
-border-size = 0pt
-border-color = #00000000
-radius = 0pt
