@@ -1,7 +1,5 @@
 set hidden true
 set ignorecase true
-set previewer ~/.config/lf/previewer
-set preview true
 set errorfmt "\033[7;31;40m"
 
 cmd unarchive ${{
@@ -26,3 +24,5 @@ map dd delete
 
 #run shell script/binary
 map R $"$f"
+
+map gf cd /mnt/Media/Film
