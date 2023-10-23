@@ -1,7 +1,7 @@
 #rosepine 
 
 [urgency_low]
-    background = "#191724" 
+    background = "#19172444" 
     foreground = "#E0DEF4"
     frame_color = "#ebbcba" 
     highlight = "#ebbcba" 
