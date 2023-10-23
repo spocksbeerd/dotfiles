@@ -7,12 +7,13 @@
     highlight = "#bd93f9"
 
 [urgency_normal]
-    background = "#282A36" 
+    background = "#282A3644" 
     foreground = "#F8F8F2"
     frame_color = "#bd93f9" 
+    highlight = "#bd93f9"
 
 [urgency_critical]
-    background = "#282A36" 
+    background = "#282A3644" 
     foreground = "#F8F8F2"
     frame_color = "#FF5555" 
 
