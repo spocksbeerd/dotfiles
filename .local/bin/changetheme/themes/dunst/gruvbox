@@ -1,18 +1,18 @@
 #gruvbox 
 
 [urgency_low]
-    background = "#282828" 
+    background = "#282828AA" 
     foreground = "#EBDBB2"
     frame_color = "#98971a"
     highlight = "#98971a"
  
 [urgency_normal]
-    background = "#282828" 
+    background = "#282828AA" 
     foreground = "#EBDBB2"
     frame_color = "#98971a"
     highlight = "#98971a"
     
 [urgency_critical]
-    background = "#282828" 
+    background = "#282828AA" 
     foreground = "#EBDBB2"
     frame_color = "#FB4934"
