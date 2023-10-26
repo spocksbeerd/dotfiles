@@ -19,7 +19,7 @@ vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 vim.o.cursorline = false 
 vim.o.wrap = false
-vim.o.scrolloff = 8
+vim.o.scrolloff = 999
 vim.o.termguicolors = true
 
 vim.o.showmode = false
