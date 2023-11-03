@@ -1,7 +1,5 @@
 vim.wo.number = true
-
 vim.o.swapfile = false
-
 -- Case insensitive searching unless capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -21,5 +19,10 @@ vim.o.cursorline = false
 vim.o.wrap = false
 vim.o.scrolloff = 999
 vim.o.termguicolors = true
+vim.o.colorcolumn = "80"
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.signcolumn = "yes"
+vim.o.numberwidth = 2
 
 vim.o.showmode = false

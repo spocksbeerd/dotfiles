@@ -20,16 +20,33 @@ plugins = {
         priority = 1000,
         config = function() require('edisan.plugins.gruvbox') end
     },
---    { 
---        "catppuccin/nvim",
---        priority = 1000,
---        config = function() require('edisan.plugins.catppuccin') end
---    },
 
-    "nvim-treesitter/nvim-treesitter",
+    {
+        "nvim-treesitter/nvim-treesitter",
+        config = function() require('edisan.plugins.treesitter') end
+    },
+
     {
         "nvim-lualine/lualine.nvim",
         config = function() require('edisan.plugins.line') end
+    },
+
+    -- completion
+    {'hrsh7th/nvim-cmp'},
+    {'hrsh7th/cmp-nvim-lsp'},
+
+    -- snippets
+    {'L3MON4D3/LuaSnip'},
+    {'rafamadriz/friendly-snippets'},
+
+    -- LSP
+    {'neovim/nvim-lspconfig'},
+    {'williamboman/mason.nvim'},
+    {'williamboman/mason-lspconfig.nvim'},
+
+    {
+        'nvim-telescope/telescope.nvim', tag = '0.1.4',
+        dependencies = { 'nvim-lua/plenary.nvim' }
     },
 }
 

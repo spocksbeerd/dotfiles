@@ -6,6 +6,7 @@ require("gruvbox").setup({
         operators = false,
         folds = false,
     },
+    bold = false,
 })
 
 vim.cmd.colorscheme "gruvbox"
