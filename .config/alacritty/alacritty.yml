@@ -7,7 +7,7 @@ window:
 
 font:
   normal:
-    family: JetBrains Mono Nerd Font
+    family: JetBrainsMono NF
 
 mouse:
   hide_when_typing: true
