@@ -24,5 +24,6 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.signcolumn = "yes"
 vim.o.numberwidth = 2
+vim.o.autochdir = true
 
 vim.o.showmode = false

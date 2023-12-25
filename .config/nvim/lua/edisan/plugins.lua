@@ -36,8 +36,12 @@ plugins = {
     {'hrsh7th/cmp-nvim-lsp'},
 
     -- snippets
-    {'L3MON4D3/LuaSnip'},
-    {'rafamadriz/friendly-snippets'},
+    {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*", 
+        -- install jsregexp (optional!).
+        -- build = "make install_jsregexp"
+    },
 
     -- LSP
     {'neovim/nvim-lspconfig'},
