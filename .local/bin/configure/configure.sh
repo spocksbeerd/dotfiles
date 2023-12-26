@@ -10,76 +10,11 @@ CYAN='\033[1;36m'        # Cyan
 WHITE='\033[1;37m'       # White
 NC='\033[0m'             # Color reset
 
-mkdir -p $HOME/.cache/zsh
-touch $HOME/.cache/zsh/history
+# git setup
+echo ""
+echo -e "${GREEN}===${WHITE} GIT SETUP ${GREEN}===${NC}"
+echo ""
 
-sudo pacman -Syy --needed archlinux-keyring
-
-# yay
-echo -e "${GREEN}+${WHITE} Installing yay...${NC}"
-sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-
-# configure dotfiles
-echo -e "${GREEN}+${WHITE} Copying dotfiles...${NC}"
-git clone --bare https://github.com/spocksbeerd/dotfiles.git $HOME/.dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-dotfiles checkout
-
-echo -e "${GREEN}+${WHITE} Installing zsh plugins...${NC}"
-$HOME/.config/zsh/plugins/installplugins.sh
-
-# software
-echo -e "${GREEN}+${WHITE} Installing software...${NC}"
-yay -S --needed - < $HOME/.local/bin/configure/software
-
-# bluetooth 
-echo -e "${WHITE}Do you want to install bluetooth support? [y/n]${NC}"
-read bluetooth
-
-if [ "$bluetooth" = "y" ]; then
-    yay -S --needed bluez bluez-utils
-    echo 'systemctl start bluetooth.service' >> $HOME/.cache/zsh/history
-fi
-
-# nvidia 
-echo -e "${WHITE}Do you want to install nvidia and gwe? [y/n]${NC}"
-read nvidia
-
-if [ "$nvidia" = "y" ]; then
-    yay -S --needed dkms linux-lts-headers nvidia-dkms gwe
-    mkdir -p $HOME/.cache/nvidia
-fi
-
-# node
-echo -e "${GREEN}+${WHITE} Installing nvm and the latest node version...${NC}"
-git clone https://github.com/nvm-sh/nvm.git $HOME/.local/share/nvm
-export NVM_DIR=~/.local/share/nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-nvm install node
-
-# java
-echo -e "${WHITE}Do you want to install java? [y/n]${NC}"
-read java
-
-if [ "$java" = "y" ]; then
-    yay -S --needed jdk17-openjdk intellij-idea-community-edition 
-fi
-
-# laptop specific
-echo -e "${WHITE}Are you on the laptop? [y/n]${NC}"
-read laptop
-
-if [ "$laptop" = "y" ]; then
-    echo -e "${GREEN}+${WHITE} Copying laptop specific xorg configs...${NC}"
-    sudo mkdir -p /etc/X11/xorg.conf.d
-    sudo cp -r $HOME/.local/bin/configure/laptop/* /etc/X11/xorg.conf.d
-
-    echo -e "${GREEN}+${WHITE} Installing brightnessctl...${NC}"
-    yay brightnessctl
-fi
-
-# setting up git
-echo -e "${GREEN}+${WHITE} Git setup${NC}"
 echo -e "${WHITE}Enter your username:${NC}"
 read name
 echo -e "${WHITE}Enter your email:${NC}"
@@ -90,21 +25,131 @@ git config --global user.email "$email"
 git config --global color.ui auto
 git config --global init.defaultBranch main
 git config --global pull.rebase false
+git config --global credential.useHttpPath true
 
+echo -e "${WHITE}Are you on the laptop? [y/n]${NC}"
+read laptop
 
-# generating an SSH key
+echo -e "${WHITE}Do you need bluetooth support? [y/n]${NC}"
+read bluetooth
+
+echo -e "${WHITE}Do you want to install nvidia and gwe? [y/n]${NC}"
+read nvidia
+
+echo -e "${WHITE}Do you want to install java? [y/n]${NC}"
+read java
+
+echo -e "${WHITE}Do you want to install node? [y/n]${NC}"
+read node
+
+#software list
+curl https://raw.githubusercontent.com/spocksbeerd/dotfiles/main/.local/bin/configure/software --output $HOME/software
+list=$HOME/software
+
+# dotfiles
+echo ""
+echo -e "${GREEN}===${WHITE} COPYING DOTFILES ${GREEN}===${NC}"
+echo ""
+git clone --bare https://github.com/spocksbeerd/dotfiles.git $HOME/.dotfiles
+git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
+git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
+
+echo ""
+echo -e "${GREEN}===${WHITE} INSTALLING ZSH PLUGINS ${GREEN}===${NC}"
+echo ""
+$HOME/.config/zsh/plugins/installplugins.sh
+
+# laptop specific
+if [ "$laptop" = "y" ]; then
+    echo 'brightnessctl' >> $list
+    sudo mkdir -pv /etc/X11/xorg.conf.d
+    sudo cp -rv $HOME/.local/bin/configure/laptop/* /etc/X11/xorg.conf.d
+fi
+
+# bluetooth 
+if [ "$bluetooth" = "y" ]; then
+    echo 'bluez' >> $list
+    echo 'bluez-utils' >> $list
+    mkdir -pv $HOME/.cache/zsh
+    echo 'systemctl start bluetooth.service' >> $HOME/.cache/zsh/history
+fi
+
+# nvidia 
+if [ "$nvidia" = "y" ]; then
+    echo 'dkms' >> $list
+    echo 'linux-lts-headers' >> $list
+    echo 'nvidia-dkms' >> $list
+    echo 'gwe' >> $list
+    mkdir -pv $HOME/.cache/nvidia
+fi
+
+# java
+if [ "$java" = "y" ]; then
+    echo 'jdk17-openjdk' >> $list
+    echo 'intellij-idea-community-edition' >> $list
+fi
+
+# yay
+echo ""
+echo -e "${GREEN}===${WHITE} INSTALLING YAY ${GREEN}===${NC}"
+echo ""
+sudo pacman -Syy --needed archlinux-keyring git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+
+# software
+echo ""
+echo -e "${GREEN}===${WHITE} INSTALLING SOFTWARE ${GREEN}===${NC}"
+echo ""
+yay -S --needed - < $list
+
+# node
+if [ "$node" = "y" ]; then
+    echo ""
+    echo -e "${GREEN}===${WHITE} INSTALLING NVM AND NODE ${GREEN}===${NC}"
+    echo ""
+    git clone https://github.com/nvm-sh/nvm.git $HOME/.local/share/nvm
+    export NVM_DIR=~/.local/share/nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    nvm install node
+fi
+
+# SSH key
+echo ""
+echo -e "${GREEN}===${WHITE} GENERATING SSH KEY ${GREEN}===${NC}"
+echo ""
 ssh-keygen -t ed25519 -C "$email"
 
-# cleanup
-echo -e "${GREEN}+${WHITE} Cleaning up...${NC}"
-rm -rf $HOME/yay
-mkdir -p $HOME/.config/git
-mv $HOME/.gitconfig $HOME/.config/git/config
-rm -f $HOME/.bashrc
-rm -f $HOME/.bash_profile
-rm -f $HOME/.bash_login
-rm -f $HOME/.bash_logout
-rm -f $HOME/.profile
+# change shell
+if [ -f /bin/zsh ]; then
+    echo ""
+    echo -e "BASH ${RED}->${NC} ZSH"
+    chsh -s /bin/zsh
+fi
 
+# finishing touches 
+echo ""
+echo -e "${GREEN}===${WHITE} CLEANING UP THE HOME FOLDER ${GREEN}===${NC}"
+echo ""
+rm -rf $HOME/yay
+echo "removed /home/yay"
+rm -rf $HOME/.npm
+echo "removed /home/.npm"
+rm -f $HOME/.bashrc
+echo "removed /home/.bashrc"
+rm -f $HOME/.bash_history
+echo "removed /home/.bash_history"
+rm -f $HOME/.bash_profile
+echo "removed /home/bash_profile"
+rm -f $HOME/.bash_login
+echo "removed /home/.bash_login"
+rm -f $HOME/.bash_logout
+echo "removed /home/.bash_logout"
+rm -f $HOME/.profile
+echo "removed /home/.profile"
+rm -f $HOME/software
+echo "removed /home/software"
+mkdir -pv $HOME/.config/git
+mv -v $HOME/.gitconfig $HOME/.config/git/config
+
+echo -e "${BLUE}Done.${NC}"
 echo -e "${BLUE}Don't forget to add the SSH key to your github account.${NC}"
 echo -e "${BLUE}You can now reboot.${NC}"
