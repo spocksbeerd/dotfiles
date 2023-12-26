@@ -17,7 +17,7 @@ sudo pacman -Syy --needed archlinux-keyring
 
 # yay
 echo -e "${GREEN}+${WHITE} Installing yay...${NC}"
-sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git $HOME/yay && cd yay && makepkg -si
+sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 
 # configure dotfiles
 echo -e "${GREEN}+${WHITE} Copying dotfiles...${NC}"
