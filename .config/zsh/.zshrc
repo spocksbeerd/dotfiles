@@ -43,7 +43,7 @@ export BROWSER=/usr/bin/firefox
 export CUDA_CACHE_PATH='$XDG_CACHE_HOME'/nv
 
 # NVM
-export NVM_DIR=~/.local/.nvm
+export NVM_DIR=~/.local/share/nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Plugins
