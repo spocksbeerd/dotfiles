@@ -78,8 +78,28 @@ if [ "$laptop" = "y" ]; then
     yay brightnessctl
 fi
 
-# cleanup
-echo -e "${GREEN}+${WHITE} Removing the yay repository from the home directory...${NC}"
-rm -rf $HOME/yay
+# setting up git
+echo -e "${GREEN}+${WHITE} Git setup${NC}"
+echo -e "${WHITE}Enter your username:${NC}"
+read name
+echo -e "${WHITE}Enter your email:${NC}"
+read email
 
-echo "Finished. Don't forget about setting up git and the github ssh key"
+git config --global user.name "$name"
+git config --global user.email "$email"
+git config --global color.ui auto
+git config --global init.defaultBranch main
+git config --global pull.rebase false
+
+
+# generating an SSH key
+ssh-keygen -t ed25519 -C "$email"
+
+# cleanup
+echo -e "${GREEN}+${WHITE} Cleaning up...${NC}"
+rm -rf $HOME/yay
+mkdir -p $HOME/.config/git
+mv $HOME/.gitconfig $HOME/.config/git/config
+
+echo -e "${BLUE}Don't forget to add the SSH key to your github account.${NC}"
+echo -e "${BLUE}You can now reboot.${NC}"
