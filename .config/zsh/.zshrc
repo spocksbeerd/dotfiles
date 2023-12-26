@@ -31,7 +31,7 @@ alias du='du -shc'
 alias vim='nvim'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias media='sudo mount -t ntfs3 -o ro /dev/sda1 /mnt'
-alias music='~/.local/bin/launchncmp.sh'
+alias bat='~/.local/bin/battery.sh'
 
 # Variables
 export EDITOR=/usr/bin/nvim
