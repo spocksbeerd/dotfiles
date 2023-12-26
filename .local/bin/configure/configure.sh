@@ -21,7 +21,7 @@ sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/ya
 
 # configure dotfiles
 echo -e "${GREEN}+${WHITE} Copying dotfiles...${NC}"
-git clone --bare github.com/spocksbeerd/dotfiles $HOME/.dotfiles
+git clone --bare https://github.com/spocksbeerd/dotfiles.git $HOME/.dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dotfiles checkout
 
