@@ -100,6 +100,11 @@ echo -e "${GREEN}+${WHITE} Cleaning up...${NC}"
 rm -rf $HOME/yay
 mkdir -p $HOME/.config/git
 mv $HOME/.gitconfig $HOME/.config/git/config
+rm -f $HOME/.bashrc
+rm -f $HOME/.bash_profile
+rm -f $HOME/.bash_login
+rm -f $HOME/.bash_logout
+rm -f $HOME/.profile
 
 echo -e "${BLUE}Don't forget to add the SSH key to your github account.${NC}"
 echo -e "${BLUE}You can now reboot.${NC}"
