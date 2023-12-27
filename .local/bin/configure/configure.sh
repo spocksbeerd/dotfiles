@@ -52,7 +52,7 @@ echo -e "${GREEN}===${WHITE} COPYING DOTFILES ${GREEN}===${NC}"
 echo ""
 git clone --bare https://github.com/spocksbeerd/dotfiles.git $HOME/.dotfiles
 git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
-git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
+mv -f $HOME/.config/dotfilesgitconfig $HOME/.dotfiles/config
 
 echo ""
 echo -e "${GREEN}===${WHITE} INSTALLING ZSH PLUGINS ${GREEN}===${NC}"
