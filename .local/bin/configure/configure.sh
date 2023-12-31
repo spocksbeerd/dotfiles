@@ -20,6 +20,8 @@ read name
 echo -e "${WHITE}Enter your email:${NC}"
 read email
 
+sudo pacman -S --needed git
+
 git config --global user.name "$name"
 git config --global user.email "$email"
 git config --global color.ui auto
@@ -150,6 +152,7 @@ echo "removed /home/software"
 mkdir -pv $HOME/.config/git
 mv -v $HOME/.gitconfig $HOME/.config/git/config
 
+echo ""
 echo -e "${BLUE}Done.${NC}"
-echo -e "${BLUE}Don't forget to add the SSH key to your github account.${NC}"
+echo -e "${BLUE}Don't forget to login to github using github cli (gh auth login)${NC}"
 echo -e "${BLUE}You can now reboot.${NC}"
