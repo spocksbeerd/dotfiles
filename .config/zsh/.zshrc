@@ -32,6 +32,7 @@ alias vim='nvim'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias media='sudo mount -t ntfs3 -o ro /dev/sda1 /mnt'
 alias bat='~/.local/bin/battery.sh'
+alias start='startx'
 
 # Variables
 export EDITOR=/usr/bin/nvim
