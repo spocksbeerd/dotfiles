@@ -22,7 +22,7 @@ fi
 # alacritty
 if [ -d "$HOME/.config/alacritty" ];
 then
-    cp -f ${themedir}/alacritty/${theme}.yaml ~/.config/alacritty/colors.yaml
+    cp -f ${themedir}/alacritty/${theme}.toml ~/.config/alacritty/colors.toml
 fi
 
 # rofi
