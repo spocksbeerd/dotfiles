@@ -1,4 +1,4 @@
-import = ["/home/edisan/.config/alacritty/colors.toml"]
+import = ["~/.config/alacritty/colors.toml"]
 
 [font.normal]
 family = "monospace"
