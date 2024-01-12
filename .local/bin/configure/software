@@ -17,6 +17,7 @@ gst-plugin-pipewire
 htop
 i3-wm
 intel-ucode
+kvantum
 lf
 libmad
 libnotify
@@ -44,6 +45,7 @@ pipewire-jack
 pipewire-pulse
 polybar
 qbittorrent
+qt5ct
 qview
 rofi
 scrot
