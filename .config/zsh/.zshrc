@@ -43,6 +43,8 @@ export BROWSER=/usr/bin/firefox
 # home directory decluttering
 export CUDA_CACHE_PATH='$XDG_CACHE_HOME'/nv
 
+export PATH="$PATH:/home/edisan/.dotnet/tools"
+
 # NVM
 export NVM_DIR=~/.local/share/nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"

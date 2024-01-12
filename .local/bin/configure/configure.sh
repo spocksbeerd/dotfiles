@@ -151,6 +151,9 @@ rm -f $HOME/software
 echo "removed /home/software"
 mkdir -pv $HOME/.config/git
 mv -v $HOME/.gitconfig $HOME/.config/git/config
+echo 'gh auth login' >> $HOME/.cache/zsh/history
+echo "pacman -Qe | cut -d' ' -f1 > installed" >> $HOME/.cache/zsh/history
+echo 'pacman -Syy --needed archlinux-keyring' >> $HOME/.cache/zsh/history
 
 echo ""
 echo -e "${BLUE}Done.${NC}"
