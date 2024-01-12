@@ -1,6 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# Used for profiling. 
+# Uncomment this line and the last line to see what slows zsh start-up time
+#zmodload zsh/zprof   
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -40,15 +41,11 @@ export VISUAL=/usr/bin/nvim
 export TERMINAL=/usr/bin/alacritty
 export BROWSER=/usr/bin/firefox
 export QT_QPA_PLATFORMTHEME=qt5ct
+export PATH="$PATH:/home/edisan/.dotnet/tools"
 
 # home directory decluttering
 export CUDA_CACHE_PATH='$XDG_CACHE_HOME'/nv
 
-export PATH="$PATH:/home/edisan/.dotnet/tools"
-
-# NVM
-export NVM_DIR=~/.local/share/nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Plugins
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -57,3 +54,10 @@ source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
+# NVM
+# Slows zsh start-up time significantly
+# Uncomment only if you need to install other node versions
+#export NVM_DIR=~/.local/share/nvm
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+#zprof
