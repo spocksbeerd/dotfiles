@@ -39,6 +39,7 @@ export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 export TERMINAL=/usr/bin/alacritty
 export BROWSER=/usr/bin/firefox
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 # home directory decluttering
 export CUDA_CACHE_PATH='$XDG_CACHE_HOME'/nv
