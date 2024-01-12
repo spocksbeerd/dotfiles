@@ -154,6 +154,8 @@ mv -v $HOME/.gitconfig $HOME/.config/git/config
 echo 'gh auth login' >> $HOME/.cache/zsh/history
 echo "pacman -Qe | cut -d' ' -f1 > installed" >> $HOME/.cache/zsh/history
 echo 'pacman -Syy --needed archlinux-keyring' >> $HOME/.cache/zsh/history
+# make the qview configuration immutable
+sudo chattr +i $HOME/.config/qView/qView.conf
 
 echo ""
 echo -e "${BLUE}Done.${NC}"
