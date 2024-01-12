@@ -1,0 +1,7 @@
+[Default Applications]
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
+image/jpeg=com.interversehq.qView.desktop
+image/jpg=com.interversehq.qView.desktop
+image/png=com.interversehq.qView.desktop
+image/gif=com.interversehq.qView.desktop
+image/webp=com.interversehq.qView.desktop
