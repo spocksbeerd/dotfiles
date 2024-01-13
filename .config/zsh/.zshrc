@@ -46,7 +46,6 @@ export PATH="$PATH:/home/edisan/.dotnet/tools"
 # home directory decluttering
 export CUDA_CACHE_PATH='$XDG_CACHE_HOME'/nv
 
-
 # Plugins
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -59,5 +58,8 @@ source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
 # Uncomment only if you need to install other node versions
 #export NVM_DIR=~/.local/share/nvm
 #[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Use node without nvm
+source $HOME/.local/bin/node.sh
 
 #zprof
