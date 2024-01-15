@@ -45,6 +45,7 @@ pipewire-jack
 pipewire-pulse
 polybar
 qbittorrent
+qt5-imageformats
 qt5ct
 qview
 rofi
@@ -52,6 +53,7 @@ scrot
 sct
 sl
 sof-firmware
+syncthing
 ttf-dejavu
 ttf-droid
 ttf-jetbrains-mono-nerd
