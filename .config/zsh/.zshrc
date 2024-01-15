@@ -1,24 +1,17 @@
-# Used for profiling. 
-# Uncomment this line and the last line to see what slows zsh start-up time
+# Profiling
 #zmodload zsh/zprof   
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Prompt
-# currently using powerlvl10k
-#source ~/.config/zsh/prompt
-
-# History
+# Options
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 setopt HIST_IGNORE_SPACE
 
-# Enable colors
 autoload -U colors && colors
-# Auto completion
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist

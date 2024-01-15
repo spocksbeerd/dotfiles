@@ -1,5 +1,6 @@
 set hidden true
-set ignorecase true
+set history false
+set wrapscroll true
 set errorfmt "\033[7;31;40m"
 
 cmd unarchive ${{
@@ -14,16 +15,27 @@ cmd unarchive ${{
   esac
 }}
 
-#bindings
-map au unarchive
+cmd dirselected ${{
+    set -f
+    printf "Directory name: "
+    read newd
+    mkdir -- "$newd"
+    mv -- $fx "$newd"
+}}
 
+# bindings
 map y copy
 map p paste
 map x cut
 map d
 map dd delete
 
-#run shell script/binary
+map au unarchive
+map ds dirselected
+
+map gf cd /mnt/Media/Film
+
+# run shell script/binary
 map R $"$f"
 
 map gf cd /mnt/Media/Film
