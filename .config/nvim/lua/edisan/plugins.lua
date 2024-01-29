@@ -15,8 +15,8 @@ opts = {}
 
 
 plugins = {
-    { 
-        "ellisonleao/gruvbox.nvim", 
+    {
+        "ellisonleao/gruvbox.nvim",
         priority = 1000,
         config = function() require('edisan.plugins.gruvbox') end
     },
@@ -34,14 +34,7 @@ plugins = {
     -- completion
     {'hrsh7th/nvim-cmp'},
     {'hrsh7th/cmp-nvim-lsp'},
-
-    -- snippets
-    {
-        "L3MON4D3/LuaSnip",
-        version = "v2.*", 
-        -- install jsregexp (optional!).
-        -- build = "make install_jsregexp"
-    },
+    {'saadparwaiz1/cmp_luasnip'},
 
     -- LSP
     {'neovim/nvim-lspconfig'},
@@ -51,6 +44,22 @@ plugins = {
     {
         'nvim-telescope/telescope.nvim', tag = '0.1.4',
         dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+
+    -- snippets
+    {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        -- install jsregexp (optional!).
+        -- build = "make install_jsregexp"
+        dependencies = { "rafamadriz/friendly-snippets" },
+        config = function() require("edisan.plugins.luasnip") end,
+    },
+
+    {
+        'numToStr/Comment.nvim',
+        config = function() require('edisan.plugins.comment') end,
+        lazy = false,
     },
 }
 
