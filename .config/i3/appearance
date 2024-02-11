@@ -3,6 +3,7 @@ font pango:JetBrainsMono NF 12
 
 # border
 default_border pixel 0
+default_floating_border none
 hide_edge_borders smart
 
 # gaps
