@@ -15,3 +15,6 @@ exec_always --no-startup-id ~/.config/dunst/launch.sh &
 
 # Launch green with envy
 exec --no-startup-id gwe --hide-window &
+
+# Polkit agent
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
