@@ -16,3 +16,5 @@ bindsym $mod+Shift+z exec --no-startup-id ~/.local/bin/zoom/zoom.sh
 bindsym $mod+F4 exec --no-startup-id ~/.local/bin/powermenu.sh
 # Switch layout
 bindsym $mod+Tab exec --no-startup-id ~/.local/bin/switchlayout/switchlayout.sh
+# Screenshot
+bindsym Print exec --no-startup-id flameshot gui
