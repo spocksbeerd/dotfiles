@@ -6,3 +6,5 @@ image/png=com.interversehq.qView.desktop
 image/gif=com.interversehq.qView.desktop
 image/webp=com.interversehq.qView.desktop
 inode/directory=pcmanfm-qt.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/http=firefox.desktop
