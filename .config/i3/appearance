@@ -1,5 +1,5 @@
 # Font for window titles.
-font pango:JetBrainsMono NF 12
+font pango: monospace 12
 
 # border
 default_border pixel 0
