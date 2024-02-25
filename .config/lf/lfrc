@@ -33,9 +33,7 @@ map dd delete
 map au unarchive
 map ds dirselected
 
-map gf cd /mnt/Media/Film
+map gf cd /run/media/edisan/Storage/Media/Film
 
 # run shell script/binary
 map R $"$f"
-
-map gf cd /mnt/Media/Film

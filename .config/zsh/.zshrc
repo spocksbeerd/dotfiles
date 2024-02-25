@@ -24,7 +24,6 @@ alias ll='ls --group-directories-first -la --ignore=..'
 alias du='du -shc'
 alias vim='nvim'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias media='sudo mount -t ntfs3 -o ro /dev/sda1 /mnt'
 alias bat='~/.local/bin/battery.sh'
 alias start='startx'
 
