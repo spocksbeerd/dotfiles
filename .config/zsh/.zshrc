@@ -37,7 +37,7 @@ export VISUAL="/usr/bin/nvim"
 export TERMINAL="/usr/bin/alacritty"
 export BROWSER="/usr/bin/firefox"
 
-export PATH="$PATH:/home/edisan/.dotnet/tools"
+export PATH="$PATH:/home/edisan/.local/share/dotnet/.dotnet/tools"
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"

@@ -8,13 +8,13 @@ bindsym $mod+w exec --no-startup-id firefox
 bindsym $mod+p exec --no-startup-id firefox --private-window
 # Lockscreen
 bindsym $mod+x exec --no-startup-id betterlockscreen --lock
-# Theme changer menu 
-bindsym $mod+c exec --no-startup-id ~/.local/bin/changetheme/changetheme.sh
-# Zoom script
-bindsym $mod+Shift+z exec --no-startup-id ~/.local/bin/zoom/zoom.sh
 # Powermenu
 bindsym $mod+F4 exec --no-startup-id ~/.local/bin/powermenu.sh
-# Switch layout
-bindsym $mod+Tab exec --no-startup-id ~/.local/bin/switchlayout/switchlayout.sh
 # Screenshot
 bindsym Print exec --no-startup-id flameshot gui
+# Zoom 
+bindsym $mod+Shift+z exec --no-startup-id ~/.local/bin/zoom/zoom.sh
+# Switch layout
+bindsym $mod+Shift+Tab exec --no-startup-id ~/.local/bin/switchlayout/switchlayout.sh
+# Theme changer menu 
+bindsym $mod+c exec --no-startup-id ~/.local/bin/changetheme/changetheme.sh
