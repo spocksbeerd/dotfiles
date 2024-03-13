@@ -17,4 +17,6 @@ exec_always --no-startup-id ~/.config/dunst/launch.sh &
 exec --no-startup-id gwe --hide-window &
 
 # Polkit agent
-exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
+#exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
+#exec --no-startup-id /usr/bin/lxpolkit
+exec --no-startup-id /usr/bin/lxqt-policykit-agent
