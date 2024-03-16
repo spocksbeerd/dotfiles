@@ -26,6 +26,7 @@ alias vim="nvim"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias bat="~/.local/bin/battery.sh"
 alias start="startx"
+alias dev="$HOME/.local/bin/tmux/dev.sh"
 
 # Variables
 export XDG_CONFIG_HOME="$HOME/.config"

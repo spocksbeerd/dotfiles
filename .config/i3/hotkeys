@@ -1,20 +1,33 @@
-# Terminal emulator
+# volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.local/bin/volume/volume.sh up 
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.local/bin/volume/volume.sh down 
+bindsym XF86AudioMute exec --no-startup-id ~/.local/bin/volume/volume.sh mute 
+bindsym $mod+F7 exec --no-startup-id ~/.local/bin/volume/volume.sh mute
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# volume set by mouse
+bindsym --whole-window --border $mod+button4 exec --no-startup-id ~/.local/bin/volume/volume.sh up 
+bindsym --whole-window --border $mod+button5 exec --no-startup-id ~/.local/bin/volume/volume.sh down 
+# brightness 
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+# terminal emulator
 bindsym $mod+Return exec --no-startup-id alacritty
-# Application launcher 
+# application launcher 
 bindsym $mod+d exec --no-startup-id rofi -show drun
-# Firefox
+# firefox
 bindsym $mod+w exec --no-startup-id firefox
-# Firefox private window
+# firefox private window
 bindsym $mod+p exec --no-startup-id firefox --private-window
-# Lockscreen
+# lockscreen
 bindsym $mod+x exec --no-startup-id betterlockscreen --lock
-# Powermenu
+# powermenu
 bindsym $mod+F4 exec --no-startup-id ~/.local/bin/powermenu.sh
-# Screenshot
+# screenshot
 bindsym Print exec --no-startup-id flameshot gui
-# Zoom 
+# zoom 
 bindsym $mod+Shift+z exec --no-startup-id ~/.local/bin/zoom/zoom.sh
-# Switch layout
+# switch layout
 bindsym $mod+Shift+Tab exec --no-startup-id ~/.local/bin/switchlayout/switchlayout.sh
-# Theme changer menu 
+# theme changer menu 
 bindsym $mod+c exec --no-startup-id ~/.local/bin/changetheme/changetheme.sh

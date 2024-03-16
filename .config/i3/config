@@ -82,21 +82,6 @@ bindsym $mod+Control+k resize grow height 4 px or 4 ppt
 bindsym $mod+Control+j resize shrink height 4 px or 4 ppt
 bindsym $mod+Control+l resize grow width 4 px or 4 ppt
 
-# Media keys volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.local/bin/changevol.sh up 
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.local/bin/changevol.sh down 
-bindsym XF86AudioMute exec --no-startup-id ~/.local/bin/changevol.sh mute 
-bindsym $mod+F7 exec --no-startup-id ~/.local/bin/changevol.sh mute
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
-
-# Mouse wheel volume
-bindsym --whole-window --border $mod+button4 exec --no-startup-id ~/.local/bin/changevol.sh up 
-bindsym --whole-window --border $mod+button5 exec --no-startup-id ~/.local/bin/changevol.sh down 
-
-# Media keys brightness control 
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 5%+
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
-
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
