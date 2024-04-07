@@ -6,7 +6,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 keymap("i", "jk", "<ESC>", opts)
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
+-- keymap("n", "<leader>e", ":Lex 30<cr>", opts)
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})

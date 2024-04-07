@@ -35,8 +35,11 @@ read laptop
 echo -e "${WHITE}Do you need bluetooth support? [y/n]${NC}"
 read bluetooth
 
-echo -e "${WHITE}Do you want to install nvidia and gwe? [y/n]${NC}"
+echo -e "${WHITE}Do you want to install the nvidia driver? [y/n]${NC}"
 read nvidia
+
+echo -e "${WHITE}Do you want to install dotnet? [y/n]${NC}"
+read dotnet 
 
 echo -e "${WHITE}Do you want to install java? [y/n]${NC}"
 read java
@@ -44,7 +47,7 @@ read java
 echo -e "${WHITE}Do you want to install node? [y/n]${NC}"
 read node
 
-#software list
+# software list
 curl https://raw.githubusercontent.com/spocksbeerd/dotfiles/main/.local/bin/configure/software --output $HOME/software
 list=$HOME/software
 
@@ -54,7 +57,7 @@ echo -e "${GREEN}===${WHITE} COPYING DOTFILES ${GREEN}===${NC}"
 echo ""
 git clone --bare https://github.com/spocksbeerd/dotfiles.git $HOME/.dotfiles
 git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
-mv -f $HOME/.config/dotfilesgitconfig $HOME/.dotfiles/config
+cp -f $HOME/.config/dotfilesgitconfig $HOME/.dotfiles/config
 
 echo ""
 echo -e "${GREEN}===${WHITE} INSTALLING ZSH PLUGINS ${GREEN}===${NC}"
@@ -79,9 +82,7 @@ fi
 # nvidia 
 if [ "$nvidia" = "y" ]; then
     echo 'dkms' >> $list
-    echo 'linux-lts-headers' >> $list
     echo 'nvidia-dkms' >> $list
-    echo 'gwe' >> $list
     mkdir -pv $HOME/.cache/nvidia
 fi
 
@@ -89,6 +90,13 @@ fi
 if [ "$java" = "y" ]; then
     echo 'jdk17-openjdk' >> $list
     echo 'intellij-idea-community-edition' >> $list
+fi
+
+# dotnet 
+if [ "$dotnet" = "y" ]; then
+    echo 'dotnet-runtime' >> $list
+    echo 'dotnet-sdk' >> $list
+    echo 'aspnet-runtime' >> $list
 fi
 
 # yay
@@ -152,6 +160,7 @@ echo "removed /home/software"
 mkdir -pv $HOME/.config/git
 mv -v $HOME/.gitconfig $HOME/.config/git/config
 echo 'gh auth login' >> $HOME/.cache/zsh/history
+# list of explicitly installed software without version numbers
 echo "pacman -Qe | cut -d' ' -f1 > installed" >> $HOME/.cache/zsh/history
 echo 'pacman -Syy --needed archlinux-keyring' >> $HOME/.cache/zsh/history
 # make the qview configuration immutable

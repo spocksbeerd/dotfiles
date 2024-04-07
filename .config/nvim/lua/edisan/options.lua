@@ -27,3 +27,6 @@ vim.o.numberwidth = 2
 vim.o.autochdir = true
 
 vim.o.showmode = false
+
+vim.g.loaded_netrw       = 1
+vim.g.loaded_netrwPlugin = 1

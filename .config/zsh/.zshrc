@@ -19,13 +19,13 @@ compinit
 _comp_options+=(globdots)  # include hidden files.
 
 # Aliases
+alias start="startx"
 alias ls="ls --color=auto"
 alias ll="ls --group-directories-first -la --ignore=.."
 alias du="du -shc"
 alias vim="nvim"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias bat="~/.local/bin/battery.sh"
-alias start="startx"
 alias dev="$HOME/.local/bin/tmux/dev.sh"
 
 # Variables
@@ -38,16 +38,17 @@ export VISUAL="/usr/bin/nvim"
 export TERMINAL="/usr/bin/alacritty"
 export BROWSER="/usr/bin/firefox"
 
-export PATH="$PATH:/home/edisan/.local/share/dotnet/.dotnet/tools"
-
+export XINITRC="$XDG_CONFIG_HOME/xinitrc"
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT5_STYLE_OVERRIDE=kvantum
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export DOTNET_CLI_HOME="$XDG_DATA_HOME/dotnet"
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export GOPATH="$XDG_DATA_HOME/go"
 
-export XINITRC="$XDG_CONFIG_HOME/xinitrc"
+# Path
+export PATH="$PATH:/home/edisan/.local/share/dotnet/.dotnet/tools"
 
 # Plugins
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

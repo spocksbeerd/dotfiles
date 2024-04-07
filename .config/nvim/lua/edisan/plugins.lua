@@ -61,6 +61,15 @@ plugins = {
         config = function() require('edisan.plugins.comment') end,
         lazy = false,
     },
+
+    {
+        'nvim-tree/nvim-tree.lua',
+        config = function() require('edisan.plugins.nvimtree') end,
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+        config = function() require('edisan.plugins.gitsigns') end,
+    },
 }
 
 require("lazy").setup(plugins, opts)

@@ -14,12 +14,14 @@ require("lspconfig").lua_ls.setup {
     },
 }
 
+-- go
+require("lspconfig").gopls.setup {}
 -- csharp
 require("lspconfig").omnisharp.setup {}
 -- java
-require("lspconfig").jdtls.setup {}
+-- require("lspconfig").jdtls.setup {}
 -- python
-require("lspconfig").pylsp.setup {}
+-- require("lspconfig").pylsp.setup {}
 -- lsps for frontend web
 require("lspconfig").tsserver.setup {}
 require("lspconfig").emmet_language_server.setup {}

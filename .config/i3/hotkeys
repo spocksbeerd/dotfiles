@@ -20,7 +20,7 @@ bindsym $mod+w exec --no-startup-id firefox
 # firefox private window
 bindsym $mod+p exec --no-startup-id firefox --private-window
 # lockscreen
-bindsym $mod+x exec --no-startup-id betterlockscreen --lock
+bindsym $mod+x exec --no-startup-id ~/.local/bin/lockscreen.sh
 # powermenu
 bindsym $mod+F4 exec --no-startup-id ~/.local/bin/powermenu.sh
 # screenshot

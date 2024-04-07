@@ -20,3 +20,6 @@ exec --no-startup-id gwe --hide-window &
 #exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 #exec --no-startup-id /usr/bin/lxpolkit
 exec --no-startup-id /usr/bin/lxqt-policykit-agent
+
+# Lockscreen for suspend
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.local/bin/lockscreen.sh

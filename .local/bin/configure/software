@@ -2,14 +2,15 @@ alacritty
 arandr
 base
 base-devel
-betterlockscreen
 chromium
 cmus
 code
 dunst
 efibootmgr
+feh
 firefox
 flameshot
+flatpak
 git
 github-cli
 gruvbox-material-gtk-theme-git
@@ -17,7 +18,9 @@ gst-plugin-pipewire
 gvfs
 htop
 i3-wm
+i3lock
 intel-ucode
+jq
 kvantum
 kvantum-qt5
 lf
@@ -72,6 +75,7 @@ wireplumber
 xclip
 xorg-server
 xorg-xinit
+xss-lock
 yay
 yt-dlp
 zathura
