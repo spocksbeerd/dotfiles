@@ -162,7 +162,8 @@ mv -v $HOME/.gitconfig $HOME/.config/git/config
 echo 'gh auth login' >> $HOME/.cache/zsh/history
 # list of explicitly installed software without version numbers
 echo "pacman -Qe | cut -d' ' -f1 > installed" >> $HOME/.cache/zsh/history
-echo 'pacman -Syy --needed archlinux-keyring' >> $HOME/.cache/zsh/history
+echo "pacman -Syy --needed archlinux-keyring" >> $HOME/.cache/zsh/history
+echo "10000 pcmanfm-qt.desktop" > $HOME/.cache/rofi3.druncache
 # make the qview configuration immutable
 sudo chattr +i $HOME/.config/qView/qView.conf
 
