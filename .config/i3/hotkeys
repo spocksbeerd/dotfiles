@@ -1,12 +1,12 @@
 # volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.local/bin/volume/volume.sh up 
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.local/bin/volume/volume.sh down 
-bindsym XF86AudioMute exec --no-startup-id ~/.local/bin/volume/volume.sh mute 
-bindsym $mod+F7 exec --no-startup-id ~/.local/bin/volume/volume.sh mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume.sh up 
+bindsym XF86AudioLowerVolume exec --no-startup-id volume.sh down 
+bindsym XF86AudioMute exec --no-startup-id volume.sh mute 
+bindsym $mod+F7 exec --no-startup-id volume.sh mute
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # volume set by mouse
-bindsym --whole-window --border $mod+button4 exec --no-startup-id ~/.local/bin/volume/volume.sh up 
-bindsym --whole-window --border $mod+button5 exec --no-startup-id ~/.local/bin/volume/volume.sh down 
+bindsym --whole-window --border $mod+button4 exec --no-startup-id volume.sh up 
+bindsym --whole-window --border $mod+button5 exec --no-startup-id volume.sh down 
 # brightness 
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 5%+
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
@@ -20,14 +20,14 @@ bindsym $mod+w exec --no-startup-id firefox
 # firefox private window
 bindsym $mod+p exec --no-startup-id firefox --private-window
 # lockscreen
-bindsym $mod+x exec --no-startup-id ~/.local/bin/lockscreen.sh
+bindsym $mod+x exec --no-startup-id lockscreen.sh
 # powermenu
-bindsym $mod+F4 exec --no-startup-id ~/.local/bin/powermenu.sh
+bindsym $mod+F4 exec --no-startup-id powermenu.sh
 # screenshot
 bindsym Print exec --no-startup-id flameshot gui
 # zoom 
-bindsym $mod+Shift+z exec --no-startup-id ~/.local/bin/zoom/zoom.sh
+bindsym $mod+Shift+z exec --no-startup-id zoom.sh
 # switch layout
-bindsym $mod+Shift+Tab exec --no-startup-id ~/.local/bin/switchlayout/switchlayout.sh
+bindsym $mod+Shift+Tab exec --no-startup-id switchlayout.sh
 # theme changer menu 
-bindsym $mod+c exec --no-startup-id ~/.local/bin/changetheme/changetheme.sh
+bindsym $mod+c exec --no-startup-id changetheme.sh

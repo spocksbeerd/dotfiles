@@ -1,25 +1,23 @@
 # Launch polybar
-exec_always --no-startup-id ~/.config/polybar/launch.sh &
+exec_always --no-startup-id polybar.sh &
 
 # Launch picom
-exec --no-startup-id picom -b &
+exec_always --no-startup-id picom -b &
 
 # Set Night Light
-exec_always --no-startup-id sct 3400 &
+exec_always --no-startup-id nightlight.sh &
 
 # Set wallpaper
 exec_always --no-startup-id nitrogen --restore &
 
 # Launch dunst
-exec_always --no-startup-id ~/.config/dunst/launch.sh &
+exec_always --no-startup-id dunst.sh &
 
 # Launch green with envy
 exec --no-startup-id gwe --hide-window &
 
 # Polkit agent
-#exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
-#exec --no-startup-id /usr/bin/lxpolkit
-exec --no-startup-id /usr/bin/lxqt-policykit-agent
+exec --no-startup-id policykit.sh &
 
 # Lockscreen for suspend
-exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.local/bin/lockscreen.sh
+exec --no-startup-id xss-lock --transfer-sleep-lock -- lockscreen.sh &

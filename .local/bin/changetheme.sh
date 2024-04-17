@@ -1,7 +1,7 @@
 #!/bin/bash
 
 theme=$(printf "catppuccin\ndracula\ngruvbox\nnord\nrosepine" | rofi -dmenu)
-themedir=~/.local/bin/changetheme/themes
+themedir=~/.local/bin/themes
 
 if [ "$theme" = "" ]; then 
     exit 1

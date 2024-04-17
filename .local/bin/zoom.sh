@@ -1,6 +1,6 @@
 #!/bin/bash
 
-imgpath=~/.local/bin/zoom/screenshot.png
+imgpath=~/.local/bin/screenshot.png
 scrot -c "${imgpath}" 
 
 while [ ! -f "${imgpath}" ];

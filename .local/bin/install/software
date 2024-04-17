@@ -2,6 +2,7 @@ alacritty
 arandr
 base
 base-devel
+bspwm
 chromium
 cmus
 code
@@ -64,6 +65,7 @@ scrot
 sct
 sl
 sof-firmware
+sxhkd
 syncthing
 tmux
 ttf-dejavu
@@ -75,6 +77,7 @@ wireplumber
 xclip
 xorg-server
 xorg-xinit
+xorg-xsetroot
 xss-lock
 yay
 yt-dlp
