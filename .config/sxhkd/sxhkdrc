@@ -1,0 +1,102 @@
+# volume with media keys
+XF86AudioRaiseVolume
+    volume.sh up
+XF86AudioLowerVolume
+    volume.sh down
+XF86AudioMute 
+    volume.sh mute
+super + F7
+    volume.sh mute
+XF86AudioMicMute 
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# volume with mouse
+super + button4
+    volume.sh up
+super + button5
+    volume.sh down
+
+# brightness 
+XF86MonBrightnessUp 
+    brightnessctl set 5%+
+XF86MonBrightnessDown
+    brightnessctl set 5%-
+
+# terminal emulator
+super + Return
+	alacritty
+
+# application launcher
+super + d
+    rofi -show drun
+
+# firefox
+super + w
+    firefox
+
+# firefox private window
+super + p
+    firefox --private-window
+
+# lockscreen
+super + x
+    lockscreen.sh
+    
+# powermenu
+super + F4
+    powermenu.sh
+
+# screenshot
+Print
+    flameshot gui
+
+# zoom 
+super + shift + z
+    zoom.sh
+
+
+
+
+
+# close focused window
+super + q
+	bspc node -c
+
+# toggle fullscreen
+super + f
+    bspc node -t \~fullscreen
+
+# toggle floating
+super + shift + space
+    bspc node -t \~floating
+
+# focus/move window to south/north
+super + {_,shift + }{j,k}
+	bspc node -{f,s} {south,north}
+
+# focus the prev/next window in the current desktop
+super + {h,l}
+	bspc node -f {prev, next}.local.!hidden.window
+
+# move window to the prev/next position in the current desktop
+super + shift + {h,l}
+    bspc node -s {prev, next}.local.!hidden.window
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# resize window 
+super + ctrl + {h,j,k,l}
+  bspc node -z {left -40 0 || bspc node -z right -40 0, \
+                bottom 0 40 || bspc node -z top 0 40,\
+                top 0 -40 || bspc node -z bottom 0 -40,\
+                right 40 0 || bspc node -z left 40 0}
+
+# quit/restart bspwm
+super + shift + {e,r}
+	bspc {quit,wm -r}
+
+# reload sxhkd configuration files
+super + Escape
+	pkill -USR1 -x sxhkd
