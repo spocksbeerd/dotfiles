@@ -1,7 +1,7 @@
 #!/bin/bash
 
 xsetroot -cursor_name left_ptr &
-xset r rate 190 35
+xset r rate 200 30
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
