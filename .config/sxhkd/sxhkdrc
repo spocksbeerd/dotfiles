@@ -54,6 +54,9 @@ Print
 super + shift + z
     zoom.sh
 
+# switch layout
+super + shift + Tab
+    switchlayout.sh
 
 
 
@@ -85,6 +88,10 @@ super + shift + {h,l}
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# cycle desktops
+super + Tab
+    bspc desktop -f next.occupied
 
 # resize window 
 super + ctrl + {h,j,k,l}
