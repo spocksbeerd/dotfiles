@@ -1,6 +1,6 @@
 require('mason').setup()
 require('mason-lspconfig').setup {
-    ensure_installed = { "tsserver" },
+    ensure_installed = {},
 }
 
 require("lspconfig").lua_ls.setup {
@@ -14,6 +14,8 @@ require("lspconfig").lua_ls.setup {
     },
 }
 
+-- c/c++
+require("lspconfig").clangd.setup {}
 -- go
 require("lspconfig").gopls.setup {}
 -- csharp
@@ -80,10 +82,10 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = true,
   float={border=_border}
 })
 
 -- Show line diagnostics automatically when hovering 
---vim.o.updatetime = 250
---vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+-- vim.o.updatetime = 250
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
