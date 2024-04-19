@@ -21,7 +21,7 @@ _comp_options+=(globdots)  # include hidden files.
 # Aliases
 alias start="startx"
 alias ls="ls --color=auto"
-alias ll="ls --group-directories-first -la --ignore=.."
+alias l="ls --group-directories-first -la --ignore=.."
 alias du="du -shc"
 alias vim="nvim"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
