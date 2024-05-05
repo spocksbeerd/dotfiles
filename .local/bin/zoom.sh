@@ -8,7 +8,7 @@ do
     sleep 0.1
 done
 
-paplay ~/.cache/sounds/notification.ogx &
+paplay ~/.local/share/sounds/notification.ogx &
 
 feh -F "${imgpath}" 
 rm "${imgpath}" 

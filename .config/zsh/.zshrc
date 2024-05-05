@@ -25,8 +25,8 @@ alias l="ls --group-directories-first -la --ignore=.."
 alias du="du -shc"
 alias vim="nvim"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-alias bat="~/.local/bin/battery.sh"
 alias sesh="tmux_sessionizer.sh"
+alias ff="fastfetch"
 
 # Variables
 export XDG_CONFIG_HOME="$HOME/.config"

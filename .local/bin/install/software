@@ -8,6 +8,7 @@ cmus
 code
 dunst
 efibootmgr
+fastfetch
 feh
 firefox
 flameshot
@@ -39,7 +40,6 @@ man-db
 man-pages
 megasync-bin
 mpv
-neofetch
 neovim
 networkmanager
 nitrogen
