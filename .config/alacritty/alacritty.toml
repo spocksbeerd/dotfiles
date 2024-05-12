@@ -1,14 +1,13 @@
-import = ["~/.config/alacritty/colors.toml"]
+import = [
+    "~/.config/alacritty/colors.toml",
+    "~/.config/alacritty/window.toml",
+]
 
 [font.normal]
 family = "monospace"
 
 [mouse]
 hide_when_typing = true
-
-[window]
-dynamic_padding = true
-opacity = 0.85
 
 [window.padding]
 x = 3
