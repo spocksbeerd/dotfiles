@@ -27,29 +27,12 @@ git config --global user.email "$email"
 git config --global color.ui auto
 git config --global init.defaultBranch main
 git config --global pull.rebase false
-git config --global credential.useHttpPath true
 
-echo -e "${WHITE}Are you on the laptop? [y/n]${NC}"
-read laptop
-
-echo -e "${WHITE}Do you need bluetooth support? [y/n]${NC}"
-read bluetooth
-
-echo -e "${WHITE}Do you want to install the nvidia driver? [y/n]${NC}"
-read nvidia
-
-echo -e "${WHITE}Do you want to install dotnet? [y/n]${NC}"
-read dotnet 
-
-echo -e "${WHITE}Do you want to install java? [y/n]${NC}"
-read java
-
-echo -e "${WHITE}Do you want to install node? [y/n]${NC}"
-read node
-
-# software list
-curl https://raw.githubusercontent.com/spocksbeerd/dotfiles/main/.local/bin/configure/software --output $HOME/software
-list=$HOME/software
+# SSH key
+echo ""
+echo -e "${GREEN}===${WHITE} GENERATING SSH KEY ${GREEN}===${NC}"
+echo ""
+ssh-keygen -t ed25519 -C "$email"
 
 # dotfiles
 echo ""
@@ -64,41 +47,6 @@ echo -e "${GREEN}===${WHITE} INSTALLING ZSH PLUGINS ${GREEN}===${NC}"
 echo ""
 $HOME/.config/zsh/plugins/installplugins.sh
 
-# laptop specific
-if [ "$laptop" = "y" ]; then
-    echo 'brightnessctl' >> $list
-    sudo mkdir -pv /etc/X11/xorg.conf.d
-    sudo cp -rv $HOME/.local/bin/configure/laptop/* /etc/X11/xorg.conf.d
-fi
-
-# bluetooth 
-if [ "$bluetooth" = "y" ]; then
-    echo 'bluez' >> $list
-    echo 'bluez-utils' >> $list
-    mkdir -pv $HOME/.cache/zsh
-    echo 'systemctl start bluetooth.service' >> $HOME/.cache/zsh/history
-fi
-
-# nvidia 
-if [ "$nvidia" = "y" ]; then
-    echo 'dkms' >> $list
-    echo 'nvidia-dkms' >> $list
-    mkdir -pv $HOME/.cache/nvidia
-fi
-
-# java
-if [ "$java" = "y" ]; then
-    echo 'jdk17-openjdk' >> $list
-    echo 'intellij-idea-community-edition' >> $list
-fi
-
-# dotnet 
-if [ "$dotnet" = "y" ]; then
-    echo 'dotnet-runtime' >> $list
-    echo 'dotnet-sdk' >> $list
-    echo 'aspnet-runtime' >> $list
-fi
-
 # yay
 echo ""
 echo -e "${GREEN}===${WHITE} INSTALLING YAY ${GREEN}===${NC}"
@@ -106,38 +54,29 @@ echo ""
 sudo pacman -Syy --needed archlinux-keyring git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 
 # software
+curl https://raw.githubusercontent.com/spocksbeerd/dotfiles/main/.local/bin/configure/software --output $HOME/software
 echo ""
 echo -e "${GREEN}===${WHITE} INSTALLING SOFTWARE ${GREEN}===${NC}"
 echo ""
-yay -S --needed - < $list
+yay -S --needed - < $HOME/software
 
 # node
-if [ "$node" = "y" ]; then
-    echo ""
-    echo -e "${GREEN}===${WHITE} INSTALLING NVM AND NODE ${GREEN}===${NC}"
-    echo ""
-    git clone https://github.com/nvm-sh/nvm.git $HOME/.local/share/nvm
-    export NVM_DIR=~/.local/share/nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-    nvm install node
-fi
-
-# SSH key
-echo ""
-echo -e "${GREEN}===${WHITE} GENERATING SSH KEY ${GREEN}===${NC}"
-echo ""
-ssh-keygen -t ed25519 -C "$email"
+git clone https://github.com/nvm-sh/nvm.git $HOME/.local/share/nvm
+export NVM_DIR=~/.local/share/nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm install node
 
 # change shell
 if [ -f /bin/zsh ]; then
     echo ""
-    echo -e "BASH ${RED}->${NC} ZSH"
+    echo -e "${GREEN}===${WHITE} CHANGING SHELL ${GREEN}===${NC}"
+    echo ""
     chsh -s /bin/zsh
 fi
 
 # finishing touches 
 echo ""
-echo -e "${GREEN}===${WHITE} CLEANING UP THE HOME FOLDER ${GREEN}===${NC}"
+echo -e "${GREEN}===${WHITE} FINISHING TOUCHES ${GREEN}===${NC}"
 echo ""
 rm -rf $HOME/yay
 echo "removed /home/yay"
@@ -159,13 +98,23 @@ rm -f $HOME/software
 echo "removed /home/software"
 mkdir -pv $HOME/.config/git
 mv -v $HOME/.gitconfig $HOME/.config/git/config
-echo 'gh auth login' >> $HOME/.cache/zsh/history
-# list of explicitly installed software without version numbers
+
+mkdir -pv $HOME/.cache/zsh
+touch $HOME/.cache/zsh/history
+
+# list of useful commands for zsh history
 echo "pacman -Qe | cut -d' ' -f1 > installed" >> $HOME/.cache/zsh/history
 echo "pacman -Syy --needed archlinux-keyring" >> $HOME/.cache/zsh/history
+echo 'gh auth login' >> $HOME/.cache/zsh/history
+
 echo "10000 pcmanfm-qt.desktop" > $HOME/.cache/rofi3.druncache
+
 # make the qview configuration immutable
 sudo chattr +i $HOME/.config/qView/qView.conf
+
+# laptop specific
+sudo mkdir -pv /etc/X11/xorg.conf.d
+sudo cp -rv $HOME/.local/bin/configure/laptop/* /etc/X11/xorg.conf.d
 
 echo ""
 echo -e "${BLUE}Done.${NC}"

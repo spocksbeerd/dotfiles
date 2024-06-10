@@ -2,6 +2,9 @@ alacritty
 arandr
 base
 base-devel
+bluez
+bluez-utils
+brightnessctl
 bspwm
 chromium
 cmus
@@ -16,7 +19,6 @@ flatpak
 fzf
 git
 github-cli
-gruvbox-material-gtk-theme-git
 gst-plugin-pipewire
 gvfs
 htop
