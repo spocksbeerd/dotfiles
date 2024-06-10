@@ -54,11 +54,10 @@ echo ""
 sudo pacman -Syy --needed archlinux-keyring git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 
 # software
-curl https://raw.githubusercontent.com/spocksbeerd/dotfiles/main/.local/bin/configure/software --output $HOME/software
 echo ""
 echo -e "${GREEN}===${WHITE} INSTALLING SOFTWARE ${GREEN}===${NC}"
 echo ""
-yay -S --needed - < $HOME/software
+yay -S --needed - < $HOME/.local/bin/install/software
 
 # node
 git clone https://github.com/nvm-sh/nvm.git $HOME/.local/share/nvm
