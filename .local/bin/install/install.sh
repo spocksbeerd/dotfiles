@@ -28,12 +28,6 @@ git config --global color.ui auto
 git config --global init.defaultBranch main
 git config --global pull.rebase false
 
-# SSH key
-echo ""
-echo -e "${GREEN}===${WHITE} GENERATING SSH KEY ${GREEN}===${NC}"
-echo ""
-ssh-keygen -t ed25519 -C "$email"
-
 # dotfiles
 echo ""
 echo -e "${GREEN}===${WHITE} COPYING DOTFILES ${GREEN}===${NC}"
@@ -72,6 +66,12 @@ if [ -f /bin/zsh ]; then
     echo ""
     chsh -s /bin/zsh
 fi
+
+# SSH key
+echo ""
+echo -e "${GREEN}===${WHITE} GENERATING SSH KEY ${GREEN}===${NC}"
+echo ""
+ssh-keygen -t ed25519 -C "$email"
 
 # finishing touches 
 echo ""
