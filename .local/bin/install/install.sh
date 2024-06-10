@@ -113,7 +113,7 @@ sudo chattr +i $HOME/.config/qView/qView.conf
 
 # laptop specific
 sudo mkdir -pv /etc/X11/xorg.conf.d
-sudo cp -rv $HOME/.local/bin/configure/laptop/* /etc/X11/xorg.conf.d
+sudo cp -rv $HOME/.local/bin/install/laptop/* /etc/X11/xorg.conf.d
 
 echo ""
 echo -e "${BLUE}Done.${NC}"
