@@ -26,12 +26,12 @@ section() {
 }
 
 section "$BLUE" "Preparing..."
-sudo pacman -S --needed --noconfirm git curl
+sudo pacman -S --needed --noconfirm git curl chezmoi
 rm -rf "$HOME/.zshenv" "$HOME/.config/" "$HOME/.local/" "$HOME/Pictures/"
 
 section "$BLUE" "Git setup"
-read -p "${YELLOW}Enter your username: ${NC}" GITHUB_USERNAME
-read -p "${YELLOW}Enter your email: ${NC}" GITHUB_EMAIL
+read -p "Enter your username: " GITHUB_USERNAME
+read -p "Enter your email: " GITHUB_EMAIL
 git config --global user.name "$GITHUB_USERNAME"
 git config --global user.email "$GITHUB_EMAIL"
 git config --global color.ui auto
@@ -40,10 +40,9 @@ git config --global pull.rebase false
 
 section "$BLUE" "Copying dotfiles..."
 chezmoi init --apply "$GITHUB_USERNAME"
-sudo chattr +i "$HOME/.config/qView/qView.conf"
 
 section "$BLUE" "Installing packages..."
-sudo pacman -S --needed - < "$HOME/.local/bin/install/software"
+sudo pacman -S --needed - < "$HOME/.local/bin/scripts/install/software"
 
 section "$BLUE" "Switching to Zsh..."
 if [ -f /bin/zsh ]; then
@@ -65,10 +64,7 @@ cd ..
 rm -rf "$HOME/yay"
 
 section "$BLUE" "Installing AUR packages..."
-/usr/bin/yay -S qview python-pywalfox
-
-section "$BLUE" "Setting up mpd-mpris..."
-/usr/bin/go install github.com/natsukagami/mpd-mpris/cmd/mpd-mpris
+/usr/bin/yay -S python-pywalfox
 
 section "$BLUE" "Enabling services..."
 systemctl --user enable dms
@@ -99,6 +95,8 @@ touch "$HOME/.cache/zsh/history"
 
 mkdir -pv "$HOME/.local/state/mpd/playlists"
 touch "$HOME/.local/state/mpd/pid"
+
+sudo chattr +i "$HOME/.config/qView/qView.conf"
 
 section "$GREEN" "Installation Complete!"
 echo -e "${CYAN}You can now reboot your system.${NC}\n"
