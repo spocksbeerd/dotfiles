@@ -92,6 +92,8 @@ mv -v "$HOME/.gitconfig" "$HOME/.config/git/config"
 
 mkdir -pv "$HOME/.cache/zsh"
 touch "$HOME/.cache/zsh/history"
+mkdir -pv "$HOME/.local/state/env"
+touch "$HOME/.local/state/env/env.zsh"
 
 mkdir -pv "$HOME/.local/state/mpd/playlists"
 touch "$HOME/.local/state/mpd/pid"
