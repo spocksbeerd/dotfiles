@@ -1,0 +1,40 @@
+# zmodload zsh/zprof   
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.cache/zsh/history
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_ALL_DUPS
+
+autoload -U colors && colors
+autoload -U compinit
+zstyle ":completion:*" menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)  # include hidden files.
+
+alias update="sudo pacman -Syy && yay && flatpak update"
+alias ls="ls --color=auto"
+alias l="ls --group-directories-first -la --ignore=.."
+alias vim="nvim"
+alias lf="yazi"
+alias s="tmux_sessionizer.sh"
+alias du="du -shc"
+alias ff="fastfetch"
+alias tree="tree -C"
+alias counter="counter.sh"
+
+source ~/.local/state/env/env.zsh
+
+# Plugins
+# source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+eval "$(mise activate zsh)"
+# zprof

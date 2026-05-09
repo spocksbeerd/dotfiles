@@ -1,0 +1,8 @@
+flatpak install flathub com.github.tchx84.Flatseal
+flatpak install flathub com.usebottles.bottles
+flatpak install flathub net.nokyan.Resources
+flatpak install flathub com.parsecgaming.parsec
+flatpak install flathub com.github.taiko2k.tauonmb
+flatpak install flathub io.github.dosbox-staging
+qview
+coolercontrol-bin

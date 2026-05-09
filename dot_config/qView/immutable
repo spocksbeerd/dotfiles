@@ -1,0 +1,4 @@
+chattr +i <file_name>  #makes the file immutable
+chattr -i <file_name>  #makes the file mutable
+
+# needed because qview remembers the fullscreen state and rewrites the config
