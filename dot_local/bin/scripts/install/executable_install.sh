@@ -1,5 +1,16 @@
 #!/bin/bash
 
+set -euo pipefail
+trap 'echo -e "${RED}Script failed at line $LINERO${NC}"; exit 1' ERR
+
+sudo -v
+# Keep sudo alive throughout script
+while true; do
+    sudo -n true
+    sleep 60
+    kill -0 $$ || exit
+done 2>/dev/null &
+
 BLACK='\033[1;30m'       # Black
 RED='\033[1;31m'         # Red
 GREEN='\033[1;32m'       # Green
@@ -10,123 +21,84 @@ CYAN='\033[1;36m'        # Cyan
 WHITE='\033[1;37m'       # White
 NC='\033[0m'             # Color reset
 
-sudo pacman -S --needed --noconfirm git
+section() {
+    echo -e "\n${1}==> ${2}${NC}\n"
+}
 
-# dotfiles
-echo ""
-echo -e "${GREEN}===${WHITE} COPYING DOTFILES ${GREEN}===${NC}"
-echo ""
-git clone --bare https://github.com/spocksbeerd/dotfiles-wayland.git $HOME/.local/share/dotfiles
-git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME checkout
+section "$BLUE" "Preparing..."
+sudo pacman -S --needed --noconfirm git curl
+rm -rf "$HOME/.zshenv" "$HOME/.config/" "$HOME/.local/" "$HOME/Pictures/"
 
-sleep 5
-
-echo ""
-echo -e "${GREEN}===${WHITE} INSTALLING ZSH PLUGINS ${GREEN}===${NC}"
-echo ""
-$HOME/.config/zsh/plugins/installplugins.sh
-
-# software
-echo ""
-echo -e "${GREEN}===${WHITE} INSTALLING SOFTWARE ${GREEN}===${NC}"
-echo ""
-sudo pacman -S --needed - < $HOME/.local/bin/install/software
-
-# change shell
-if [ -f /bin/zsh ]; then
-    echo ""
-    echo -e "${GREEN}===${WHITE} CHANGING SHELL ${GREEN}===${NC}"
-    echo ""
-    chsh -s /bin/zsh
-fi
-
-# git setup
-echo ""
-echo -e "${GREEN}===${WHITE} GIT SETUP ${GREEN}===${NC}"
-echo ""
-
-echo -e "${WHITE}Enter your username:${NC}"
-read name
-echo -e "${WHITE}Enter your email:${NC}"
-read email
-
-git config --global user.name "$name"
-git config --global user.email "$email"
+section "$BLUE" "Git setup"
+read -p "${YELLOW}Enter your username: ${NC}" GITHUB_USERNAME
+read -p "${YELLOW}Enter your email: ${NC}" GITHUB_EMAIL
+git config --global user.name "$GITHUB_USERNAME"
+git config --global user.email "$GITHUB_EMAIL"
 git config --global color.ui auto
 git config --global init.defaultBranch main
 git config --global pull.rebase false
 
-# SSH key
-echo ""
-echo -e "${GREEN}===${WHITE} GENERATING SSH KEY ${GREEN}===${NC}"
-echo ""
-ssh-keygen -t ed25519 -C "$email"
+section "$BLUE" "Copying dotfiles..."
+chezmoi init --apply "$GITHUB_USERNAME"
+sudo chattr +i "$HOME/.config/qView/qView.conf"
 
-# finishing touches 
-echo ""
-echo -e "${GREEN}===${WHITE} FINISHING TOUCHES ${GREEN}===${NC}"
-echo ""
-rm -rf $HOME/.npm
-echo "removed /home/.npm"
-rm -f $HOME/.bashrc
-echo "removed /home/.bashrc"
-rm -f $HOME/.bash_history
-echo "removed /home/.bash_history"
-rm -f $HOME/.bash_profile
-echo "removed /home/.bash_profile"
-rm -f $HOME/.bash_login
-echo "removed /home/.bash_login"
-rm -f $HOME/.bash_logout
-echo "removed /home/.bash_logout"
-rm -f $HOME/.profile
-echo "removed /home/.profile"
-mkdir -pv $HOME/.config/git
-mv -v $HOME/.gitconfig $HOME/.config/git/config
-echo "moved git config file in /home/.config"
-mkdir -pv $HOME/.cache/zsh
-touch $HOME/.cache/zsh/history
-echo "created zsh history file"
-mkdir $HOME/Pictures/screenshots
-echo "created screenshots folder"
-mkdir $HOME/Projects
-echo "created projects folder"
-mkdir $HOME/Downloads
-echo "created downloads folder"
-mkdir $HOME/Documents
-echo "created documents folder"
-mkdir $HOME/Music
-echo "created music folder"
-mkdir $HOME/Videos
-echo "created videos folder"
-mkdir $HOME/.local/bin-extras
-touch $HOME/.local/bin-extras/machine-specific-hotkeys.conf
-cp -f $HOME/.config/dotfilesgitconfig $HOME/.local/share/dotfiles/config
+section "$BLUE" "Installing packages..."
+sudo pacman -S --needed - < "$HOME/.local/bin/install/software"
 
-# version manager
-curl https://mise.run | MISE_INSTALL_PATH=~/.local/bin-extras/mise sh
+section "$BLUE" "Switching to Zsh..."
+if [ -f /bin/zsh ]; then
+    chsh -s /bin/zsh
+fi
 
-echo "pacman -Qe | cut -d' ' -f1 > installed" >> $HOME/.cache/zsh/history
-echo "pacman -Syy --needed archlinux-keyring" >> $HOME/.cache/zsh/history
-echo 'gh auth login' >> $HOME/.cache/zsh/history
-echo "10000 pcmanfm-qt.desktop" > $HOME/.cache/rofi3.druncache
+section "$BLUE" "Installing Zsh plugins..."
+"$HOME/.config/zsh/plugins/installplugins.sh"
 
-# make the qview configuration immutable
-sudo chattr +i $HOME/.config/qView/qView.conf
+section "$BLUE" "Generating ssh key..."
+ssh-keygen -t ed25519 -C "$GITHUB_EMAIL"
 
-# needed group
-sudo gpasswd -a "$(whoami)" input
+section "$BLUE" "Installing mise..."
+curl https://mise.run | MISE_INSTALL_PATH=~/.local/bin/mise sh
 
-# yay
-echo ""
-echo -e "${GREEN}===${WHITE} INSTALLING YAY ${GREEN}===${NC}"
-echo ""
+section "$BLUE" "Installing yay..."
 sudo pacman -Syy --needed archlinux-keyring git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+cd ..
+rm -rf "$HOME/yay"
 
-rm -rf $HOME/yay
-echo "removed /home/yay"
+section "$BLUE" "Installing AUR packages..."
+/usr/bin/yay -S qview python-pywalfox
 
-echo ""
-echo -e "${BLUE}Finished.${NC}"
-echo -e "${BLUE}Login to github using github cli (gh auth login).${NC}"
-echo -e "${BLUE}Edit 'etc/pacman.conf'.${NC}"
-echo -e "${BLUE}You can now reboot.${NC}"
+section "$BLUE" "Setting up mpd-mpris..."
+/usr/bin/go install github.com/natsukagami/mpd-mpris/cmd/mpd-mpris
+
+section "$BLUE" "Enabling services..."
+systemctl --user enable dms
+systemctl --user enable mpd-mpris
+sudo systemctl enable sddm.service
+
+section "$BLUE" "Finishing touches..."
+rm -rf "$HOME/.npm"
+rm -f "$HOME/.bashrc"
+rm -f "$HOME/.bash_history"
+rm -f "$HOME/.bash_profile"
+rm -f "$HOME/.bash_login"
+rm -f "$HOME/.bash_logout"
+rm -f "$HOME/.profile"
+
+mkdir -pv "$HOME/Documents"
+mkdir -pv "$HOME/Downloads"
+mkdir -pv "$HOME/Music"
+mkdir -pv "$HOME/Pictures/screenshots"
+mkdir -pv "$HOME/Projects"
+mkdir -pv "$HOME/Videos"
+
+mkdir -pv "$HOME/.config/git"
+mv -v "$HOME/.gitconfig" "$HOME/.config/git/config"
+
+mkdir -pv "$HOME/.cache/zsh"
+touch "$HOME/.cache/zsh/history"
+
+mkdir -pv "$HOME/.local/state/mpd/playlists"
+touch "$HOME/.local/state/mpd/pid"
+
+section "$GREEN" "Installation Complete!"
+echo -e "${CYAN}You can now reboot your system.${NC}\n"
