@@ -72,8 +72,8 @@ sep_outer = { open = "", close = "" }
 
 [mode]
 
-normal_main = { fg = "black", bg = "#A7C080", bold = true }
-normal_alt  = { fg = "#A7C080", bg = "#4D5960", bold = false }
+normal_main = { fg = "black", bg = "blue", bold = true }
+normal_alt  = { fg = "black", bg = "brightblue", bold = false }
 
 # Select mode
 select_main = { bg = "red", bold = true }
@@ -98,7 +98,7 @@ padding = { open = "█", close = "█" }
 # : Status bar {{{
 
 [status]
-overall         = { fg = "gray", bg = "#3A464C" }
+# overall         = { fg = "gray", bg = "#3A464C" }
 separator_open  = ""
 separator_close = ""
 sep_left = { open = "", close = "" }
