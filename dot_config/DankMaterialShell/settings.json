@@ -1,6 +1,8 @@
 {
   "currentThemeName": "dynamic",
   "currentThemeCategory": "dynamic",
+  "customThemeFile": "",
+  "registryThemeVariants": {},
   "matugenScheme": "scheme-fidelity",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
